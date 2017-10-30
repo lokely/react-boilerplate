@@ -1,8 +1,10 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
+const cssnano = require('cssnano');
 const CompressionPlugin = require('compression-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
@@ -33,39 +35,21 @@ module.exports = {
     // new webpack.optimize.ModuleConcatenationPlugin(),
     new ExtractTextPlugin({ filename: './index.css', disable: false, allChunks: true }),
 
-    new webpack.optimize.UglifyJsPlugin({
-      output: {
-        comments: false
-      },
-      mangle: true,
-      sourcemap: false,
-      debug: false,
-      minimize: true,
-      compress: {
-        warnings: false,
-        screw_ie8: true,
-        conditionals: true,
-        unused: true,
-        comparisons: true,
-        sequences: true,
-        dead_code: true,
-        evaluate: true,
-        if_return: true,
-        join_vars: true
-      }
-    }),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
       }
+    }),
+    new UglifyJSPlugin({
+      test: /\.js($|\?)/i
     }),
     new webpack.EnvironmentPlugin([
       'ENV'
     ]),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /index\.css$/g,
-      cssProcessor: require('cssnano'),
-      cssProcessorOptions: { discardComments: {removeAll: true }, discardUnused: { fontFace: false } },
+      cssProcessor: cssnano,
+      cssProcessorOptions: { discardComments: { removeAll: true }, discardUnused: { fontFace: false } },
       canPrint: true
     }),
     new CompressionPlugin({
