@@ -43,6 +43,6 @@ export default [
     description: '',
     socialText: '',
     image: '',
-    preload: () => axios.get('/api/portfolio')
+    preload: () => axios.get('http://localhost:3000/api/portfolio').then(res => res.data)
   }
 ];

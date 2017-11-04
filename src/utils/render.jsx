@@ -9,14 +9,14 @@ const render = (component, data) => (
   `<!DOCTYPE html>
 <html>
   <head>
-    <title>${(data.title || '').replace(/\{[^}]+?\}/g, '').slice(0, 72)}${data.title.lenght > 72 ? '...' : ''}</title>
+    <title>${(data.meta.title || '').replace(/\{[^}]+?\}/g, '').slice(0, 72)}${(data.meta.title || '').lenght > 72 ? '...' : ''}</title>
     <meta charset="utf-8" />
-    <meta name="description" content="${data.description}" />
-    <meta name="twitter:card" value="${data.socialText}" />
-    <meta name="twitter:image" content="${data.image}" />
-    <meta property="og:title" content="${data.title}" />
-    <meta property="og:image" content="${data.image}" />
-    <meta property="og:description" content="${data.description}" />
+    <meta name="description" content="${data.meta.description}" />
+    <meta name="twitter:card" value="${data.meta.socialText}" />
+    <meta name="twitter:image" content="${data.meta.image}" />
+    <meta property="og:title" content="${data.meta.title}" />
+    <meta property="og:image" content="${data.meta.image}" />
+    <meta property="og:description" content="${data.meta.description}" />
     <meta name="viewport" content="${viewPort}" />
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -43,23 +43,22 @@ export const renderPage = async (ctx) => {
         status: 404,
         initialState,
         html: render(
-          <App router={StaticRouter} location={ctx.url} statusCode={404} />,
+          <App router={StaticRouter} location={{ key: ctx.url, match: { url: ctx.url}}} statusCode={404} />,
           initialState
         )
       };
     } else {
-      const preload = match.preload && await match.preload(match);
+      const preload = match.meta.preload && await match.meta.preload();
       const pageData = Object.assign(
         {},
         match,
-        preload,
-        { env: process.env.ENV || 'production' }
+        preload
       );
       return {
         status: 200,
         initialState: pageData,
         html: render(
-          <App router={StaticRouter} location={ctx.url} statusCode={200} {...pageData} />,
+          <App router={StaticRouter} location={{ key: ctx.url, match: { url: ctx.url}}} statusCode={200} {...pageData} />,
           pageData
         )
       };
@@ -75,7 +74,7 @@ export const renderPage = async (ctx) => {
       status: 500,
       initialState,
       html: render(
-        <App router={StaticRouter} location={ctx.url} statusCode={500} error={e.message} />,
+        <App router={StaticRouter} location={{ key: ctx.url, match: { url: ctx.url}}} statusCode={500} error={e.message} />,
         initialState
       )
     }

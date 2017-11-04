@@ -53,6 +53,7 @@
   "dependencies": {
     "axios": "^0.17.0",
     "koa": "^2.3.0",
+    "koa-router": "^7.2.1",
     "koa-static": "^4.0.1",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",

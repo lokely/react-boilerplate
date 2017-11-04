@@ -9,7 +9,7 @@ const matchUrl = url => (
         m && (m.isExact || route.exact === false)
       ) {
         const meta = pages.find(p => p.path === m.path);
-        return Object.assign({}, m, meta) || acc;
+        return Object.assign({}, m, { meta }) || acc;
       }
       return acc;
     },
