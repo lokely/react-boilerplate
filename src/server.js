@@ -10,7 +10,8 @@ app.use(logger());
 
 app.use(async (ctx, next) => {
   const start = Date.now();
-  const { html } = await renderPage(ctx);
+  const { html, status } = await renderPage(ctx);
+  ctx.status = status;
   ctx.body = `${html} <!-- ${Date.now() - start}ms to render using koa -->`;
   next();
 });
