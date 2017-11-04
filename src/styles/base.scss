@@ -12,6 +12,14 @@ body{
   background-color: #fefefe;
 }
 
+.Alert {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid rgb(46, 131, 244);
+  background-color: rgb(89, 180, 255);
+  color: white;
+}
+
 .Container {
   max-width: 600px;
   margin: 20px auto;

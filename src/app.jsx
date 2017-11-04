@@ -4,11 +4,13 @@ import { Route, Switch } from 'react-router-dom';
 import pages from './pages';
 import RouteWrapper from './elements/RouteWrapper';
 import Navigation from './elements/Navigation';
+import Alert from './elements/Alert';
 
 const App = props => (
   <props.router context={{}} location={props.location}>
     <div className="Container">
       <Navigation {...props} />
+      { props.env === 'local' && <Alert>Hello you are in Local Environment.</Alert> }
       <div className="Content">
         <Switch>
           { pages

@@ -1,3 +1,4 @@
+import axios from 'axios';
 import Home from './Home';
 import About from './About';
 import Projects from './Projects';
@@ -9,8 +10,8 @@ export default [
     component: Home,
     exact: true,
     showInMenu: true,
-    title: 'Home',
-    description: '',
+    title: 'My Portfolio',
+    description: 'This is the home page.',
     socialText: '',
     image: ''
   },
@@ -41,6 +42,7 @@ export default [
     title: 'Styling',
     description: '',
     socialText: '',
-    image: ''
+    image: '',
+    preload: () => axios.get('/api/portfolio')
   }
 ];
