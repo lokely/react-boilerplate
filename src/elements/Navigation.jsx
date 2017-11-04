@@ -4,7 +4,7 @@ import pages from '../pages';
 
 const Navigation = () => (
   <ul className="Navigation">
-    {pages.map(page => (
+    {pages.filter(page => page.showInMenu).map(page => (
       <li key={page.path}>
         <Link to={page.path}>{page.title}</Link>
       </li>
