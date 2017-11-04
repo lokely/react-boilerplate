@@ -5,7 +5,6 @@
     "dist": "yarn run distribute",
     "start": "webpack-dev-server",
     "lint": "./node_modules/eslint/bin/eslint.js src",
-    "webpack": "node build/webpack-server.js",
     "build": "babel src -d build",
     "build-watch": "babel src --watch -d build",
     "gzip": "gzip -9rk ./static"
