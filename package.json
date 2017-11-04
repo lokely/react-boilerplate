@@ -5,6 +5,7 @@
     "dist": "yarn run distribute",
     "start": "webpack-dev-server",
     "lint": "./node_modules/eslint/bin/eslint.js src",
+    "dev": "nodemon ./build/server.js",
     "build": "babel src -d build",
     "build-watch": "babel src --watch -d build",
     "gzip": "gzip -9rk ./static"
@@ -52,6 +53,8 @@
   },
   "dependencies": {
     "axios": "^0.17.0",
+    "koa": "^2.3.0",
+    "koa-static": "^4.0.1",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
