@@ -28,7 +28,7 @@ class RouteWrapper extends Component {
     }
     if (this.props.preload) {
       try {
-        const data = this.props.preload(this.props.match, {
+        const data = await this.props.preload(this.props.match, {
           cancelToken: new CancelToken((c) => { this.cancelPreload = c; })
         });
         this.setState({ data });

@@ -10,18 +10,8 @@ export default [
     component: Home,
     exact: true,
     showInMenu: true,
-    title: 'My Portfolio',
+    title: 'Portfolio',
     description: 'This is the home page.',
-    socialText: '',
-    image: ''
-  },
-  {
-    path: '/about',
-    component: About,
-    exact: true,
-    showInMenu: true,
-    title: 'About',
-    description: '',
     socialText: '',
     image: ''
   },
@@ -43,6 +33,6 @@ export default [
     description: '',
     socialText: '',
     image: '',
-    preload: () => axios.get('http://localhost:3000/api/portfolio').then(res => res.data)
+    preload: () => axios.get('http://159.203.100.15/api/portfolio').then(res => res.data)
   }
 ];

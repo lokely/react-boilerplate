@@ -2,13 +2,14 @@
   "name": "lokely-react-boilerplate",
   "scripts": {
     "distribute": "./node_modules/webpack/bin/webpack.js --config ./webpack.config.prod.js",
-    "dist": "yarn run distribute",
+    "dist": "npm run distribute",
     "start": "webpack-dev-server",
     "lint": "./node_modules/eslint/bin/eslint.js src",
     "dev": "nodemon ./build/server.js",
     "build": "babel src -d build",
     "build-watch": "babel src --watch -d build",
-    "gzip": "gzip -9rk ./static"
+    "gzip": "gzip -9rk ./static",
+    "deploy": "rsync -azP --exclude=.git --exclude=node_modules --exclude=build . root@159.203.100.15:/var/app/portfolio; ssh root@159.203.100.15 'cd /var/app/portfolio; npm i; npm run build; npm run dist; pm2 restart portfolio;';"
   },
   "devDependencies": {
     "babel-cli": "^6.8.0",
@@ -36,7 +37,7 @@
     "eslint-plugin-react": "^7.4.0",
     "eslint-plugin-redux": "^0.1.0",
     "extract-text-webpack-plugin": "^3.0.2",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.6.0",
     "open-browser-webpack-plugin": "^0.0.5",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "path": "^0.12.7",
