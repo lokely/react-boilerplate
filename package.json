@@ -1,5 +1,9 @@
 {
   "name": "lokely-react-boilerplate",
+  "licence": {
+    "type": "MIT",
+    "url": "https://github.com/lokely/react-boilerplate/blob/master/LICENCE"
+  },
   "scripts": {
     "distribute": "./node_modules/webpack/bin/webpack.js --config ./webpack.config.prod.js",
     "dist": "yarn run distribute",
