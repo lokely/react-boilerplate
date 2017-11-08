@@ -5,3 +5,5 @@ Use the project to build your first React app. If you would like to learn how to
 # Any questions, comments?
 
 Feel free to open up a pull request or find me on twitter @samueldelesque.
+
+PS: Yes we use a similar setup on https://lokely.co
